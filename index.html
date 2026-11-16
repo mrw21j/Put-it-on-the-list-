@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Jam Band Bingo: put it on the list</title>
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph / Social Meta -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Jam Band Bingo: put it on the list" />
   <meta property="og:description" content="Play Jam Band Bingo with classic covers and jam standards. Generate a card, call songs, and get five in a row. Put it on the list!" />
   <meta property="og:url" content="https://playful-rugelach-35b4ae.netlify.app/" />
   <meta property="og:site_name" content="Jam Band Bingo" />
   <meta name="description" content="Play Jam Band Bingo with classic covers and jam standards. Generate a card, call songs, and get five in a row." />
-  <meta name="theme-color" content="#f0a500" />
+  <meta name="theme-color" content="#2b1810" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -22,631 +23,756 @@
 
   <style>
     :root {
-      --bg: #0f1419;
-      --surface: #1a2332;
-      --surface2: #243044;
-      --border: #3a4a5c;
-      --text: #e8eef5;
-      --muted: #8b9cb3;
-      --accent: #f0a500;
-      --accent-dim: #c48400;
-      --green: #2ecc71;
-      --green-dim: #1e9b52;
-      --red: #e74c3c;
-      --fb: #1877f2;
-      --fb-dark: #0d65d9;
-      --marked: #1a5c3a;
+      --bg-dark: #1d100a;
+      --poster-cream: #f5ebd6;
+      --poster-paper: #efe0c1;
+      --ink-brown: #2b1810;
+      --rust-orange: #c84b26;
+      --mustard-gold: #d99b26;
+      --teal-groove: #246a73;
+      --psychedelic-purple: #5c2d6e;
+      --fb-blue: #1877f2;
+      --green-win: #1e7e46;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
 
     html {
       -webkit-text-size-adjust: 100%;
-      height: 100%;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100%;
-      line-height: 1.4;
-      -webkit-tap-highlight-color: transparent;
-      -webkit-font-smoothing: antialiased;
+      margin: 0;
+      padding: 14px 12px 32px;
+      background-color: var(--bg-dark);
+      background-image: radial-gradient(circle at 50% 0%, #3d2216 0%, #1d100a 75%);
+      font-family: 'Trebuchet MS', 'Gill Sans', 'Segoe UI', sans-serif;
+      color: var(--ink-brown);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
     }
 
-    .app {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0.75rem 0.75rem 2.5rem;
+    .poster-frame {
+      width: 100%;
+      max-width: 620px;
+      background: var(--poster-cream);
+      background-image:
+        radial-gradient(rgba(43, 24, 16, 0.04) 1px, transparent 0),
+        linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(217, 155, 38, 0.08) 100%);
+      background-size: 16px 16px, 100% 100%;
+      border: 5px solid var(--ink-brown);
+      border-radius: 14px;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.65), inset 0 0 0 3px var(--mustard-gold);
+      padding: 16px 14px 20px;
+      position: relative;
+      overflow: hidden;
     }
 
+    /* Header / Title Banner */
     header {
       text-align: center;
-      padding: 0.9rem 0.4rem 1.1rem;
-      border-bottom: 2px solid var(--border);
-      margin-bottom: 1.1rem;
+      border-bottom: 3px double var(--ink-brown);
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+      position: relative;
     }
 
-    header h1 {
-      font-size: clamp(1.3rem, 5vw, 1.95rem);
-      font-weight: 800;
-      letter-spacing: 0.01em;
-      color: var(--accent);
-      text-shadow: 0 0 18px rgba(240, 165, 0, 0.22);
-    }
-
-    header .subtitle {
-      color: var(--muted);
-      font-size: 0.88rem;
-      margin-top: 0.25rem;
-    }
-
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 0.9rem 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .panel h2 {
-      font-size: 0.88rem;
+    .tagline-pill {
+      display: inline-block;
+      background: var(--rust-orange);
+      color: #fff8eb;
+      font-weight: 900;
+      font-size: 0.92rem;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--accent);
-      margin-bottom: 0.65rem;
+      padding: 4px 14px;
+      border-radius: 999px;
+      border: 2px solid var(--ink-brown);
+      box-shadow: 2px 2px 0 var(--ink-brown);
+      margin-bottom: 6px;
+      transform: rotate(-1.2deg);
     }
 
-    button.btn {
-      background: var(--accent);
-      color: #111;
-      border: none;
-      padding: 0.55rem 0.8rem;
-      border-radius: 8px;
+    h1 {
+      margin: 2px 0 4px;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: clamp(1.9rem, 6.5vw, 2.75rem);
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-brown);
+      text-shadow: 2px 2px 0px var(--mustard-gold);
+      line-height: 1.05;
+    }
+
+    .subtitle {
+      font-size: 0.82rem;
       font-weight: 700;
-      font-size: 0.84rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--teal-groove);
+    }
+
+    /* Status & Controls Bar */
+    .card-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+      padding: 0 2px;
+    }
+
+    .section-label {
+      font-family: 'Georgia', serif;
+      font-size: 0.95rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--ink-brown);
+    }
+
+    .status {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--teal-groove);
+    }
+
+    .status.bingo {
+      color: var(--rust-orange);
+      font-weight: 900;
+      animation: pulseText 1s ease-in-out infinite;
+    }
+
+    @keyframes pulseText {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.55; }
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    button {
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 7px 11px;
+      border: 2.5px solid var(--ink-brown);
+      border-radius: 8px;
       cursor: pointer;
-      -webkit-appearance: none;
-      appearance: none;
-      transition: background 0.15s, transform 0.1s;
-      white-space: nowrap;
-      min-height: 40px;
+      box-shadow: 2px 3px 0 var(--ink-brown);
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background-color 0.15s ease;
     }
 
-    button.btn:hover { background: var(--accent-dim); }
-    button.btn:active { transform: scale(0.97); }
-
-    button.btn.secondary {
-      background: var(--surface2);
-      color: var(--text);
-      border: 1px solid var(--border);
+    button:active {
+      transform: translate(2px, 2px);
+      box-shadow: 0 1px 0 var(--ink-brown);
     }
-    button.btn.secondary:hover { background: var(--border); }
 
-    button.btn.danger {
-      background: transparent;
-      color: var(--red);
-      border: 1px solid var(--red);
+    .btn-primary {
+      background: var(--mustard-gold);
+      color: var(--ink-brown);
     }
-    button.btn.danger:hover { background: rgba(231, 76, 60, 0.12); }
+    .btn-primary:hover { background: #e5a832; }
 
-    button.btn.success {
-      background: var(--green);
-      color: #111;
+    .btn-secondary {
+      background: var(--teal-groove);
+      color: #fff8eb;
     }
-    button.btn.success:hover { background: var(--green-dim); }
+    .btn-secondary:hover { background: #2c7f8a; }
 
-    button.btn.facebook {
-      background: var(--fb);
+    .btn-success {
+      background: var(--green-win);
+      color: #fff8eb;
+    }
+    .btn-success:hover { background: #239251; }
+
+    .btn-facebook {
+      background: var(--fb-blue);
       color: #fff;
     }
-    button.btn.facebook:hover { background: var(--fb-dark); }
+    .btn-facebook:hover { background: #0d65d9; }
 
-    button.btn:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-      transform: none;
+    .btn-danger {
+      background: #b93829;
+      color: #fff8eb;
     }
+    .btn-danger:hover { background: #a02e21; }
 
-    .btn-row {
-      display: -webkit-box;
-      display: flex;
-      -webkit-flex-wrap: wrap;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 0.85rem;
+    .btn-ghost {
+      background: var(--poster-paper);
+      color: var(--ink-brown);
     }
+    .btn-ghost:hover { background: #e6d2aa; }
 
-    .card-header {
-      display: -webkit-box;
-      display: flex;
-      -webkit-flex-wrap: wrap;
-      flex-wrap: wrap;
-      -webkit-box-pack: justify;
-      justify-content: space-between;
-      -webkit-box-align: center;
-      align-items: center;
-      gap: 0.35rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .card-header .status {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
-    .card-header .status.bingo {
-      color: var(--green);
-      font-weight: 700;
-      -webkit-animation: pulse 1s ease-in-out infinite;
-      animation: pulse 1s ease-in-out infinite;
-    }
-
-    @-webkit-keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.55; }
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.55; }
-    }
-
-    .bingo-wrap {
-      width: 100%;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    .bingo-grid {
-      display: -ms-grid;
+    /* B-I-N-G-O Column Headers */
+    .bingo-header-row {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 3px;
-      background: var(--border);
-      border: 3px solid var(--accent);
-      border-radius: 10px;
-      overflow: hidden;
-      width: 100%;
-      aspect-ratio: 1 / 1;
+      gap: 6px;
+      margin-bottom: 6px;
     }
 
-    /* Fallback for Safari versions without solid aspect-ratio support */
-    @supports not (aspect-ratio: 1 / 1) {
-      .bingo-grid {
-        height: 0;
-        padding-bottom: 100%;
-        position: relative;
-        aspect-ratio: auto;
-      }
-      .bingo-grid > .bingo-cell {
-        position: absolute;
-      }
-    }
-
-    .bingo-cell {
-      background: var(--surface);
-      display: -webkit-box;
-      display: flex;
-      -webkit-box-align: center;
-      align-items: center;
-      -webkit-box-pack: center;
-      justify-content: center;
+    .bingo-letter {
+      background: var(--ink-brown);
+      color: var(--mustard-gold);
+      font-family: 'Georgia', serif;
+      font-size: 1.35rem;
+      font-weight: 900;
       text-align: center;
-      padding: 0.2rem 0.15rem;
-      font-size: clamp(0.52rem, 2.4vw, 0.74rem);
-      font-weight: 600;
-      line-height: 1.15;
+      padding: 5px 0;
+      border-radius: 7px;
+      letter-spacing: 1px;
+      box-shadow: inset 0 0 0 1.5px var(--mustard-gold);
+    }
+
+    /* 5x5 Grid */
+    .bingo-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+
+    .tile {
+      aspect-ratio: 1 / 1;
+      background: #fffaf0;
+      border: 2.5px solid var(--ink-brown);
+      border-radius: 9px;
+      padding: 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
       cursor: pointer;
-      -webkit-user-select: none;
-      user-select: none;
+      box-shadow: 2px 2px 0 rgba(43, 24, 16, 0.25);
+      transition: transform 0.12s ease, background-color 0.2s ease;
+      overflow: hidden;
+    }
+
+    .tile:hover {
+      transform: translateY(-1px);
+      background: #fff4dc;
+    }
+
+    .tile-text {
+      font-size: clamp(0.6rem, 2.2vw, 0.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--ink-brown);
       word-break: break-word;
-      -webkit-hyphens: auto;
       hyphens: auto;
-      min-height: 0;
+      z-index: 1;
     }
 
-    .bingo-cell:active:not(.free):not(.header-cell) {
-      background: var(--surface2);
-    }
-
-    .bingo-cell.marked {
-      background: var(--marked);
-      color: #d4f5e2;
-      box-shadow: inset 0 0 10px rgba(46, 204, 113, 0.25);
-    }
-
-    .bingo-cell.free {
-      background: -webkit-linear-gradient(145deg, #c48400, #f0a500);
-      background: linear-gradient(145deg, #c48400, #f0a500);
-      color: #111;
-      font-weight: 800;
-      font-size: clamp(0.68rem, 2.4vw, 0.92rem);
+    /* Free Space Tile */
+    .tile.free-space {
+      background: radial-gradient(circle, #fbe3a1 0%, #e4a83b 100%);
       cursor: default;
-      letter-spacing: 0.03em;
+    }
+    .tile.free-space .free-badge {
+      font-size: 0.58rem;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      background: var(--ink-brown);
+      color: #fff8eb;
+      padding: 1px 5px;
+      border-radius: 4px;
+      margin-bottom: 3px;
     }
 
-    .bingo-cell.header-cell {
-      background: var(--accent);
-      color: #111;
-      font-weight: 800;
-      font-size: 1rem;
-      letter-spacing: 0.08em;
-      cursor: default;
+    /* Guitar Pick Stamp Overlay */
+    .stamp {
+      position: absolute;
+      inset: 6%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(1.6) rotate(-18deg);
+      transition: opacity 0.18s ease, transform 0.22s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+      z-index: 2;
+    }
+
+    .tile.marked .stamp {
+      opacity: 1;
+      transform: scale(1) rotate(var(--rot, -10deg));
+    }
+
+    .tile.marked .tile-text {
+      opacity: 0.72;
+    }
+
+    .pick-svg {
+      width: 84%;
+      height: 84%;
+      filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.35));
+    }
+
+    /* Winning Line Highlight */
+    .tile.winner {
+      background: #ffe082 !important;
+      border-color: var(--rust-orange);
+      animation: pulseWinner 0.9s infinite alternate;
+    }
+
+    @keyframes pulseWinner {
+      from { transform: scale(1); box-shadow: 0 0 6px var(--mustard-gold); }
+      to { transform: scale(1.03); box-shadow: 0 0 16px var(--rust-orange); }
     }
 
     .rule-note {
-      font-size: 0.74rem;
-      color: var(--muted);
-      margin-top: 0.45rem;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--teal-groove);
+      margin: 9px 0 0;
       text-align: center;
       font-style: italic;
     }
 
+    /* Bingo Banner Alert */
+    .bingo-banner {
+      display: none;
+      margin-top: 12px;
+      background: var(--rust-orange);
+      color: #fff8eb;
+      border: 3px solid var(--ink-brown);
+      border-radius: 10px;
+      padding: 10px 14px;
+      text-align: center;
+      box-shadow: 3px 3px 0 var(--ink-brown);
+      animation: popIn 0.3s ease;
+    }
+
+    .bingo-banner.show {
+      display: block;
+    }
+
+    .bingo-banner h2 {
+      margin: 0 0 4px;
+      font-family: 'Georgia', serif;
+      font-size: 1.35rem;
+      letter-spacing: 1px;
+    }
+
+    .bingo-banner p {
+      margin: 0;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Call Next Song Section */
     .call-section {
-      margin-top: 1rem;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 2px dashed rgba(43, 24, 16, 0.35);
       text-align: center;
     }
 
     .last-called {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.75rem 0.9rem;
-      margin: 0.6rem 0;
-      min-height: 2.8rem;
-      display: -webkit-box;
+      background: #fffaf0;
+      border: 2.5px solid var(--ink-brown);
+      border-radius: 9px;
+      padding: 10px 12px;
+      margin: 8px 0;
+      min-height: 44px;
       display: flex;
-      -webkit-box-align: center;
       align-items: center;
-      -webkit-box-pack: center;
       justify-content: center;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--accent);
+      font-family: 'Georgia', serif;
+      font-size: 1.08rem;
+      font-weight: 900;
+      color: var(--rust-orange);
+      box-shadow: inset 0 2px 4px rgba(43, 24, 16, 0.1);
     }
 
     .last-called.empty {
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 0.88rem;
+      font-family: inherit;
+      color: rgba(43, 24, 16, 0.55);
+      font-weight: 700;
+      font-size: 0.85rem;
     }
 
     .called-list {
-      display: -webkit-box;
       display: flex;
-      -webkit-flex-wrap: wrap;
       flex-wrap: wrap;
-      gap: 0.28rem;
-      -webkit-box-pack: center;
+      gap: 5px;
       justify-content: center;
-      max-height: 72px;
+      max-height: 76px;
       overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      margin-top: 0.35rem;
+      margin-top: 6px;
+      padding: 2px;
     }
 
     .called-chip {
-      background: var(--surface2);
-      border: 1px solid var(--border);
+      background: var(--poster-paper);
+      border: 1.5px solid var(--ink-brown);
       border-radius: 999px;
-      padding: 0.16rem 0.48rem;
-      font-size: 0.68rem;
-      color: var(--muted);
+      padding: 2px 9px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ink-brown);
     }
 
+    /* Share Bar */
     .share-bar {
-      display: -webkit-box;
       display: flex;
-      -webkit-flex-wrap: wrap;
       flex-wrap: wrap;
-      gap: 0.4rem;
-      -webkit-box-pack: center;
+      gap: 7px;
       justify-content: center;
-      margin-top: 0.85rem;
-      padding-top: 0.85rem;
-      border-top: 1px solid var(--border);
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 2px dashed rgba(43, 24, 16, 0.35);
     }
 
-    /* Song Bank at bottom */
-    .song-bank-panel { margin-top: 0.25rem; }
+    /* Sub-panels (Saved Cards & Song Bank) */
+    .panel-title {
+      margin: 0 0 8px;
+      font-family: 'Georgia', serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--ink-brown);
+      border-bottom: 2px solid var(--ink-brown);
+      padding-bottom: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .saved-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 170px;
+      overflow-y: auto;
+    }
+
+    .saved-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fffaf0;
+      border: 2px solid var(--ink-brown);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .saved-item .actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .saved-item button {
+      padding: 4px 9px;
+      font-size: 0.74rem;
+      box-shadow: 1px 2px 0 var(--ink-brown);
+    }
+
+    .empty-note {
+      color: rgba(43, 24, 16, 0.6);
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 8px;
+      margin: 0;
+    }
+
+    /* Song Bank Panel */
+    .add-hint {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: rgba(43, 24, 16, 0.78);
+      margin: 0 0 10px;
+      line-height: 1.35;
+    }
 
     .song-bank-controls {
-      display: -webkit-box;
       display: flex;
-      gap: 0.4rem;
-      margin-bottom: 0.7rem;
+      gap: 8px;
+      margin-bottom: 10px;
     }
 
     .song-bank-controls input {
-      -webkit-box-flex: 1;
       flex: 1;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.6rem 0.7rem;
+      background: #fffdf8;
+      border: 2.5px solid var(--ink-brown);
+      color: var(--ink-brown);
+      padding: 9px 11px;
       border-radius: 8px;
-      font-size: 16px; /* prevents iOS zoom */
-      -webkit-appearance: none;
-      appearance: none;
-      min-height: 44px;
+      font-size: 16px;
+      font-weight: 700;
+      user-select: text;
+      -webkit-user-select: text;
     }
 
     .song-bank-controls input:focus {
       outline: none;
-      border-color: var(--accent);
+      border-color: var(--rust-orange);
+      background: #fff;
     }
 
-    .song-bank-controls .btn {
-      min-width: 48px;
+    .song-bank-controls button {
+      min-width: 52px;
       font-size: 1.2rem;
-      padding: 0.5rem 0.9rem;
+      padding: 6px 14px;
     }
 
-    .song-list {
-      max-height: 320px;
+    .song-bank-list {
+      max-height: 310px;
       overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--bg);
+      border: 2.5px solid var(--ink-brown);
+      border-radius: 9px;
+      background: #fffaf0;
     }
 
-    .song-item {
-      display: -webkit-box;
+    .song-bank-item {
       display: flex;
-      -webkit-box-align: center;
       align-items: center;
-      -webkit-box-pack: justify;
       justify-content: space-between;
-      padding: 0.5rem 0.65rem;
-      border-bottom: 1px solid var(--border);
+      padding: 7px 10px;
+      border-bottom: 1.5px solid rgba(43, 24, 16, 0.18);
       font-size: 0.88rem;
-      gap: 0.5rem;
-      min-height: 44px;
+      font-weight: 800;
+      gap: 8px;
     }
 
-    .song-item:last-child { border-bottom: none; }
+    .song-bank-item:last-child {
+      border-bottom: none;
+    }
 
-    .song-item.called {
-      opacity: 0.45;
+    .song-bank-item.called {
+      opacity: 0.48;
       text-decoration: line-through;
-      color: var(--muted);
+      color: var(--teal-groove);
+      background: var(--poster-paper);
     }
 
-    .song-item button {
-      background: transparent;
-      border: none;
-      color: var(--red);
-      cursor: pointer;
-      font-size: 1rem;
-      padding: 0.35rem 0.5rem;
-      border-radius: 4px;
-      -webkit-flex-shrink: 0;
+    .song-bank-item button {
+      background: #b93829;
+      color: #fff;
+      border: 2px solid var(--ink-brown);
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      box-shadow: 1px 1px 0 var(--ink-brown);
       flex-shrink: 0;
-      min-width: 36px;
-      min-height: 36px;
-      -webkit-appearance: none;
-      appearance: none;
     }
 
     .bank-meta {
       font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 0.5rem;
-      display: -webkit-box;
+      font-weight: 800;
+      color: var(--ink-brown);
+      margin-top: 10px;
       display: flex;
-      -webkit-box-pack: justify;
       justify-content: space-between;
-      -webkit-box-align: center;
       align-items: center;
-      gap: 0.5rem;
-      -webkit-flex-wrap: wrap;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
-    .add-hint {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-bottom: 0.55rem;
-      line-height: 1.35;
-    }
-
-    .saved-list {
-      display: -webkit-box;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      flex-direction: column;
-      gap: 0.35rem;
-      max-height: 160px;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .saved-item {
-      display: -webkit-box;
-      display: flex;
-      -webkit-box-pack: justify;
-      justify-content: space-between;
-      -webkit-box-align: center;
-      align-items: center;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.45rem 0.6rem;
-      font-size: 0.84rem;
-      min-height: 44px;
-    }
-
-    .saved-item .actions {
-      display: -webkit-box;
-      display: flex;
-      gap: 0.3rem;
-    }
-
-    .saved-item button {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.3rem 0.5rem;
-      border-radius: 5px;
-      font-size: 0.75rem;
-      cursor: pointer;
-      min-height: 32px;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-    .saved-item button:hover { border-color: var(--accent); color: var(--accent); }
-    .saved-item button.del:hover { border-color: var(--red); color: var(--red); }
-
-    .empty-note {
-      color: var(--muted);
-      font-size: 0.84rem;
-      text-align: center;
-      padding: 0.7rem;
-    }
-
+    /* Toast Notification */
     .toast {
       position: fixed;
-      bottom: 1.4rem;
+      bottom: 1.2rem;
       left: 50%;
-      -webkit-transform: translateX(-50%) translateY(120%);
-      transform: translateX(-50%) translateY(120%);
-      background: var(--surface2);
-      border: 1px solid var(--accent);
-      color: var(--text);
-      padding: 0.7rem 1.15rem;
+      transform: translateX(-50%) translateY(140%);
+      background: var(--ink-brown);
+      border: 2.5px solid var(--mustard-gold);
+      color: #fff8eb;
+      padding: 9px 16px;
       border-radius: 10px;
-      font-weight: 600;
-      z-index: 100;
-      -webkit-transition: transform 0.3s ease;
-      transition: transform 0.3s ease;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      font-weight: 800;
+      font-size: 0.88rem;
+      z-index: 150;
+      transition: transform 0.28s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.55);
       max-width: 90vw;
       text-align: center;
-      font-size: 0.9rem;
     }
     .toast.show {
-      -webkit-transform: translateX(-50%) translateY(0);
       transform: translateX(-50%) translateY(0);
     }
 
+    /* Bingo Celebration Modal */
     .modal-overlay {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.7);
+      inset: 0;
+      background: rgba(18, 10, 6, 0.78);
       display: none;
-      -webkit-box-align: center;
       align-items: center;
-      -webkit-box-pack: center;
       justify-content: center;
       z-index: 200;
-      padding: 1rem;
+      padding: 16px;
     }
     .modal-overlay.show {
-      display: -webkit-box;
       display: flex;
     }
 
-    .modal {
-      background: var(--surface);
-      border: 2px solid var(--green);
-      border-radius: 16px;
-      padding: 1.6rem 1.4rem;
+    .modal-box {
+      background: var(--poster-cream);
+      border: 4px solid var(--ink-brown);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.65), inset 0 0 0 3px var(--mustard-gold);
+      border-radius: 14px;
+      padding: 22px 18px;
       text-align: center;
-      max-width: 340px;
+      max-width: 360px;
       width: 100%;
     }
-    .modal h2 { color: var(--green); font-size: 1.75rem; margin-bottom: 0.35rem; }
-    .modal p { color: var(--muted); margin-bottom: 1rem; font-size: 0.92rem; }
+
+    .modal-box h2 {
+      font-family: 'Georgia', serif;
+      color: var(--rust-orange);
+      text-shadow: 1px 1px 0 var(--mustard-gold);
+      font-size: 2rem;
+      margin: 0 0 6px;
+    }
+
+    .modal-box p {
+      color: var(--ink-brown);
+      font-weight: 800;
+      margin: 0 0 14px;
+      font-size: 0.95rem;
+    }
+
+    /* Confetti Canvas */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 180;
+    }
 
     footer {
       text-align: center;
-      margin-top: 1.25rem;
       font-size: 0.76rem;
-      color: var(--muted);
+      font-weight: 700;
+      color: rgba(245, 235, 214, 0.72);
+      margin-top: 2px;
     }
   </style>
 </head>
 <body>
-  <div class="app">
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- MAIN POSTER CARD -->
+  <div class="poster-frame">
     <header>
-      <h1>Jam Band Bingo: put it on the list</h1>
-      <p class="subtitle">Classic covers · jam standards · put it on the list</p>
+      <div class="tagline-pill">★ Put it on the list! ★</div>
+      <h1>Jam Band Bingo</h1>
+      <div class="subtitle">Play along with the band!</div>
     </header>
 
-    <!-- MAIN CARD -->
-    <div class="panel">
-      <div class="card-header">
-        <h2 style="margin:0;">Your Card</h2>
-        <span class="status" id="bingoStatus">Click squares to mark · Center is FREE</span>
-      </div>
-
-      <div class="btn-row">
-        <button class="btn" id="newCardBtn" type="button">🎲 New Card</button>
-        <button class="btn secondary" id="saveCardBtn" type="button">💾 Save</button>
-        <button class="btn secondary" id="printCardBtn" type="button">🖨️ Print</button>
-        <button class="btn danger" id="clearMarksBtn" type="button">Clear</button>
-      </div>
-
-      <div class="bingo-wrap">
-        <div class="bingo-grid" id="bingoGrid"></div>
-      </div>
-      <p class="rule-note">More than 6 drummers on the list by 3 = free square</p>
-
-      <div class="call-section">
-        <div class="btn-row" style="justify-content: center;">
-          <button class="btn success" id="callSongBtn" type="button">📢 Call Next Song</button>
-          <button class="btn secondary" id="resetCallsBtn" type="button">Reset Calls</button>
-        </div>
-        <div class="last-called empty" id="lastCalled">No songs called yet</div>
-        <div class="called-list" id="calledList"></div>
-      </div>
-
-      <div class="share-bar">
-        <button class="btn facebook" id="shareFbBtn" type="button">Share on Facebook</button>
-        <button class="btn secondary" id="copyLinkBtn" type="button">Copy Link</button>
-        <button class="btn secondary" id="shareNativeBtn" type="button" style="display:none;">Share…</button>
-      </div>
+    <div class="card-meta-bar">
+      <span class="section-label">Your Card</span>
+      <span class="status" id="bingoStatus">Tap squares to stamp · Center is FREE</span>
     </div>
 
-    <!-- SAVED CARDS -->
-    <div class="panel">
-      <h2>Saved Cards</h2>
-      <div class="saved-list" id="savedList">
-        <p class="empty-note">No saved cards yet</p>
-      </div>
+    <div class="controls">
+      <button class="btn-primary" id="newCardBtn" type="button">🎲 New Card</button>
+      <button class="btn-ghost" id="saveCardBtn" type="button">💾 Save</button>
+      <button class="btn-ghost" id="printCardBtn" type="button">🖨️ Print</button>
+      <button class="btn-danger" id="clearMarksBtn" type="button">↺ Clear</button>
+      <button class="btn-secondary" id="soundToggleBtn" type="button">🔊 Sound: ON</button>
     </div>
 
-    <!-- SONG BANK AT BOTTOM -->
-    <div class="panel song-bank-panel">
-      <h2>Song Bank</h2>
-      <p class="add-hint">Anyone can add songs on this device. New songs stay in your browser and are used the next time you generate a card.</p>
-      <div class="song-bank-controls">
-        <input type="text" id="newSongInput" placeholder="Type a song title and tap +" maxlength="80" autocomplete="off" autocorrect="off" autocapitalize="words" />
-        <button class="btn" id="addSongBtn" type="button" title="Add song to the bank">+</button>
-      </div>
-      <div class="song-list" id="songList"></div>
-      <div class="bank-meta">
-        <span><span id="songCount">0</span> songs in the bank</span>
-        <button class="btn secondary" id="resetBankBtn" type="button" style="font-size:0.75rem;padding:0.35rem 0.6rem;min-height:32px;">Reset to original list</button>
-      </div>
+    <div class="bingo-header-row">
+      <div class="bingo-letter">B</div>
+      <div class="bingo-letter">I</div>
+      <div class="bingo-letter">N</div>
+      <div class="bingo-letter">G</div>
+      <div class="bingo-letter">O</div>
     </div>
 
-    <footer>
-      Jam Band Bingo · put it on the list · runs in your browser
-    </footer>
+    <div class="bingo-grid" id="bingoGrid"></div>
+    <p class="rule-note">More than 6 drummers on the list by 3 = free square</p>
+
+    <div class="bingo-banner" id="bingoBanner">
+      <h2>🎉 BINGO! PUT IT ON THE LIST! 🎉</h2>
+      <p>You got five in a row! Hit "New Card" for the next set.</p>
+    </div>
+
+    <!-- CALL NEXT SONG SECTION -->
+    <div class="call-section">
+      <div class="controls" style="margin-bottom: 6px;">
+        <button class="btn-success" id="callSongBtn" type="button">📢 Call Next Song</button>
+        <button class="btn-ghost" id="resetCallsBtn" type="button">Reset Calls</button>
+      </div>
+      <div class="last-called empty" id="lastCalled">No songs called yet</div>
+      <div class="called-list" id="calledList"></div>
+    </div>
+
+    <!-- SHARE BAR -->
+    <div class="share-bar">
+      <button class="btn-facebook" id="shareFbBtn" type="button">Share on Facebook</button>
+      <button class="btn-ghost" id="copyLinkBtn" type="button">Copy Link</button>
+      <button class="btn-secondary" id="shareNativeBtn" type="button" style="display:none;">Share…</button>
+    </div>
   </div>
+
+  <!-- SAVED CARDS PANEL -->
+  <div class="poster-frame">
+    <h2 class="panel-title">💾 Saved Cards</h2>
+    <div class="saved-list" id="savedList">
+      <p class="empty-note">No saved cards yet</p>
+    </div>
+  </div>
+
+  <!-- SONG BANK PANEL -->
+  <div class="poster-frame">
+    <h2 class="panel-title">
+      <span>🎸 Song Bank</span>
+      <span style="font-size:0.8rem; color:var(--teal-groove);"><span id="songCount">0</span> songs</span>
+    </h2>
+    <p class="add-hint">Anyone can add songs on this device. New songs stay in your browser and are used the next time you generate a card.</p>
+    <div class="song-bank-controls">
+      <input type="text" id="newSongInput" placeholder="Type a song title and tap +" maxlength="80" autocomplete="off" autocorrect="off" autocapitalize="words" />
+      <button class="btn-primary" id="addSongBtn" type="button" title="Add song to the bank">+</button>
+    </div>
+    <div class="song-bank-list" id="songList"></div>
+    <div class="bank-meta">
+      <span>Min 24 songs needed to deal a card</span>
+      <button class="btn-ghost" id="resetBankBtn" type="button" style="font-size:0.74rem; padding:5px 9px;">Reset to original list</button>
+    </div>
+  </div>
+
+  <footer>
+    Jam Band Bingo · put it on the list · runs offline in your browser
+  </footer>
 
   <div class="toast" id="toast"></div>
 
+  <!-- BINGO MODAL -->
   <div class="modal-overlay" id="bingoModal">
-    <div class="modal">
-      <h2>BINGO!</h2>
+    <div class="modal-box">
+      <h2>🎉 BINGO! 🎉</h2>
       <p>You got five in a row. Put it on the list!</p>
-      <button class="btn success" id="closeBingoBtn" type="button" style="width:100%;">Keep Playing</button>
-      <button class="btn facebook" id="shareBingoBtn" type="button" style="margin-top:0.5rem;width:100%;">Share the win on Facebook</button>
+      <button class="btn-success" id="closeBingoBtn" type="button" style="width:100%; margin-bottom:8px;">Keep Playing</button>
+      <button class="btn-facebook" id="shareBingoBtn" type="button" style="width:100%;">Share the win on Facebook</button>
     </div>
   </div>
 
@@ -663,24 +789,23 @@
         "Givin' It Up for Your Love","634-5789","Leap of Faith","Brown Sugar","Crazy Mama",
         "Young Blood","Dead Flowers","Use Me","(I Can't Get No) Satisfaction","For What It's Worth",
         "Unchain My Heart","Heard It Through the Grapevine","Kansas City","Walkin' the Dog",
-        "Walkin' Blues","Southbound","Clyde","One Way Out","Before You Accuse Me","Why Me",
+        "Walkin' Blues","Southbound Train","Clyde","One Way Out","Before You Accuse Me","Why Me",
         "Jumpin' Jack Flash","Dixie Chicken","The Future's So Bright","Satisfied",
-        "She Loves My Automobile","Mojo Workin'","Will the Circle Be Unbroken?"
+        "She Loves My Automobile","Mojo Workin'","Pink Cadillac","Use me up","I Hear You Knockin","Sweet Home Chicage",
+		"Random Delyn Song","The Weight","Cover of the Rolling Stone","Why You Been Gone So Long","Shaky Ground",
+		"Nutbush City Limit","Hound Dog"
       ];
 
       var songBank = [];
       var currentCard = [];
       var marked = [];
+      var rotations = [];
+      var winningTiles = [];
       var calledSongs = [];
       var savedCards = [];
-      var STORAGE_KEY = "jamBandBingo_v3";
-      var supportsAspectRatio = false;
-
-      try {
-        supportsAspectRatio = window.CSS && CSS.supports && CSS.supports("aspect-ratio", "1 / 1");
-      } catch (e) {
-        supportsAspectRatio = false;
-      }
+      var soundEnabled = true;
+      var hasCelebrated = false;
+      var STORAGE_KEY = "jamBandBingo_poster_v1";
 
       function toast(msg, ms) {
         ms = ms || 2200;
@@ -699,16 +824,27 @@
         return a;
       }
 
+      function escapeHtml(s) {
+        return String(s)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
       function saveState() {
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify({
             songBank: songBank,
             currentCard: currentCard,
             marked: marked,
+            rotations: rotations,
             calledSongs: calledSongs,
-            savedCards: savedCards
+            savedCards: savedCards,
+            soundEnabled: soundEnabled
           }));
-        } catch (e) { /* Safari private mode */ }
+        } catch (e) {}
       }
 
       function loadState() {
@@ -719,18 +855,126 @@
           songBank = (data.songBank && data.songBank.length) ? data.songBank : DEFAULT_SONGS.slice();
           currentCard = data.currentCard || [];
           marked = data.marked || [];
+          rotations = data.rotations || [];
           calledSongs = data.calledSongs || [];
           savedCards = data.savedCards || [];
+          if (typeof data.soundEnabled === "boolean") soundEnabled = data.soundEnabled;
           return true;
         } catch (e) {
           return false;
         }
       }
 
-      function escapeHtml(s) {
-        return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      // Web Audio API Guitar Strum & Win Chord
+      var audioCtx = null;
+      function getAudioCtx() {
+        if (!audioCtx) {
+          var AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) audioCtx = new AudioContext();
+        }
+        if (audioCtx && audioCtx.state === "suspended") audioCtx.resume();
+        return audioCtx;
       }
 
+      function playStrumSound(pitchMult) {
+        if (!soundEnabled) return;
+        var ctx = getAudioCtx();
+        if (!ctx) return;
+        var now = ctx.currentTime;
+        var freqs = [196, 246.94, 293.66].map(function (f) { return f * (pitchMult || 1); });
+        freqs.forEach(function (freq, i) {
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(freq, now + i * 0.025);
+          gain.gain.setValueAtTime(0.08, now + i * 0.025);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.025 + 0.25);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + i * 0.025);
+          osc.stop(now + i * 0.025 + 0.26);
+        });
+      }
+
+      function playWinChord() {
+        if (!soundEnabled) return;
+        var ctx = getAudioCtx();
+        if (!ctx) return;
+        var now = ctx.currentTime;
+        var notes = [261.63, 329.63, 392.00, 523.25, 659.25];
+        notes.forEach(function (freq, i) {
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.type = "sawtooth";
+          osc.frequency.setValueAtTime(freq, now + i * 0.06);
+          gain.gain.setValueAtTime(0.07, now + i * 0.06);
+          gain.gain.exponentialRampToValueAtTime(0.0008, now + i * 0.06 + 0.75);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + i * 0.06);
+          osc.stop(now + i * 0.06 + 0.76);
+        });
+      }
+
+      // Offline Confetti Celebration
+      function launchConfetti() {
+        var canvas = document.getElementById("confetti-canvas");
+        var ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        var colors = ["#c84b26", "#d99b26", "#246a73", "#5c2d6e", "#f5ebd6"];
+        var pieces = [];
+        for (var i = 0; i < 95; i++) {
+          pieces.push({
+            x: Math.random() * canvas.width,
+            y: -20 - Math.random() * 120,
+            w: 7 + Math.random() * 6,
+            h: 10 + Math.random() * 6,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            vy: 2.5 + Math.random() * 4,
+            vx: (Math.random() - 0.5) * 3,
+            rot: Math.random() * 360,
+            vrot: (Math.random() - 0.5) * 8
+          });
+        }
+
+        var frames = 0;
+        function frame() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          for (var i = 0; i < pieces.length; i++) {
+            var p = pieces[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            p.rot += p.vrot;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate((p.rot * Math.PI) / 180);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+            ctx.restore();
+          }
+          frames++;
+          if (frames < 140) {
+            requestAnimationFrame(frame);
+          } else {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+          }
+        }
+        requestAnimationFrame(frame);
+      }
+
+      function createPickSVG() {
+        return '<svg class="pick-svg" viewBox="0 0 100 100" aria-hidden="true">' +
+          '<path d="M50 6 C78 6, 92 26, 86 52 C80 76, 60 94, 50 96 C40 94, 20 76, 14 52 C8 26, 22 6, 50 6 Z" ' +
+          'fill="rgba(200, 75, 38, 0.84)" stroke="#2b1810" stroke-width="5"/>' +
+          '<path d="M50 14 C72 14, 83 30, 78 51 C73 70, 57 85, 50 87 C43 85, 27 70, 22 51 C17 30, 28 14, 50 14 Z" ' +
+          'fill="none" stroke="#f5ebd6" stroke-width="2" stroke-dasharray="4 3"/>' +
+          '<text x="50" y="53" text-anchor="middle" fill="#fff8eb" font-family="Georgia, serif" font-weight="900" font-size="16" letter-spacing="1">JAM</text>' +
+          '</svg>';
+      }
+
+      // Song Bank Rendering & Controls
       function renderSongList() {
         var list = document.getElementById("songList");
         list.innerHTML = "";
@@ -738,7 +982,7 @@
         for (var i = 0; i < sorted.length; i++) {
           (function (song) {
             var div = document.createElement("div");
-            div.className = "song-item" + (calledSongs.indexOf(song) !== -1 ? " called" : "");
+            div.className = "song-bank-item" + (calledSongs.indexOf(song) !== -1 ? " called" : "");
             div.innerHTML = "<span>" + escapeHtml(song) + "</span><button type=\"button\" title=\"Remove\">✕</button>";
             div.querySelector("button").addEventListener("click", function () { removeSong(song); });
             list.appendChild(div);
@@ -758,7 +1002,7 @@
         var lower = val.toLowerCase();
         for (var i = 0; i < songBank.length; i++) {
           if (songBank[i].toLowerCase() === lower) {
-            toast("Already in the song bank");
+            toast("Already on the list!");
             return;
           }
         }
@@ -766,11 +1010,15 @@
         input.value = "";
         renderSongList();
         saveState();
-        toast("Added: " + val);
+        toast("Put on the list: " + val);
         input.blur();
       }
 
       function removeSong(song) {
+        if (songBank.length <= 24) {
+          toast("Need at least 24 songs in the bank");
+          return;
+        }
         songBank = songBank.filter(function (s) { return s !== song; });
         renderSongList();
         saveState();
@@ -778,175 +1026,175 @@
       }
 
       function resetBank() {
-        if (!window.confirm("Reset song bank to the original 51 songs? Your added songs will be removed.")) return;
+        if (!window.confirm("Reset song bank to the original 52 songs? Your added songs will be removed.")) return;
         songBank = DEFAULT_SONGS.slice();
         renderSongList();
         saveState();
         toast("Song bank reset");
       }
 
-      function generateCard() {
+      // Card Generation & Evaluation
+      function generateCard(silent) {
         if (songBank.length < 24) {
           toast("Need at least 24 songs in the bank");
           return;
         }
         var picks = shuffle(songBank).slice(0, 24);
         currentCard = [];
+        marked = [];
+        rotations = [];
+        winningTiles = [];
+        hasCelebrated = false;
+
         var p = 0;
         for (var i = 0; i < 25; i++) {
-          currentCard.push(i === 12 ? "FREE" : picks[p++]);
+          if (i === 12) {
+            currentCard.push("Will The Circle Be Unbroken");
+            marked.push(true);
+            rotations.push(-8);
+          } else {
+            currentCard.push(picks[p++]);
+            marked.push(false);
+            rotations.push(Math.floor(Math.random() * 34) - 17);
+          }
+          winningTiles.push(false);
         }
-        marked = [];
-        for (var m = 0; m < 25; m++) marked[m] = (m === 12);
+
+        evaluateBingo(false);
         renderCard();
-        updateBingoStatus();
         saveState();
-        toast("New card generated");
+        if (!silent) toast("New random card dealt!");
       }
 
-      function positionCellsFallback() {
-        if (supportsAspectRatio) return;
-        var grid = document.getElementById("bingoGrid");
-        var cells = grid.querySelectorAll(".bingo-cell");
-        if (cells.length < 30) return;
-        var cellW = 100 / 5;
-        var cellH = 100 / 6;
-        for (var i = 0; i < cells.length; i++) {
-          var row = Math.floor(i / 5);
-          var col = i % 5;
-          var el = cells[i];
-          el.style.left = (col * cellW) + "%";
-          el.style.top = (row * cellH) + "%";
-          el.style.width = cellW + "%";
-          el.style.height = cellH + "%";
+      function evaluateBingo(triggerCelebration) {
+        var lines = [
+          [0,1,2,3,4],[5,6,7,8,9],[10,11,12,13,14],[15,16,17,18,19],[20,21,22,23,24],
+          [0,5,10,15,20],[1,6,11,16,21],[2,7,12,17,22],[3,8,13,18,23],[4,9,14,19,24],
+          [0,6,12,18,24],[4,8,12,16,20]
+        ];
+
+        winningTiles = new Array(25).fill(false);
+        var anyWin = false;
+
+        for (var L = 0; L < lines.length; L++) {
+          var ok = true;
+          for (var j = 0; j < 5; j++) {
+            if (!marked[lines[L][j]]) { ok = false; break; }
+          }
+          if (ok) {
+            anyWin = true;
+            for (var k = 0; k < 5; k++) {
+              winningTiles[lines[L][k]] = true;
+            }
+          }
         }
+
+        var statusEl = document.getElementById("bingoStatus");
+        var bannerEl = document.getElementById("bingoBanner");
+
+        if (anyWin) {
+          statusEl.textContent = "★ BINGO! PUT IT ON THE LIST! ★";
+          statusEl.classList.add("bingo");
+          bannerEl.classList.add("show");
+          if (triggerCelebration && !hasCelebrated) {
+            hasCelebrated = true;
+            playWinChord();
+            launchConfetti();
+            document.getElementById("bingoModal").classList.add("show");
+          }
+        } else {
+          var count = 0;
+          for (var i = 0; i < marked.length; i++) if (marked[i]) count++;
+          statusEl.textContent = count + " marked · Center is FREE";
+          statusEl.classList.remove("bingo");
+          bannerEl.classList.remove("show");
+          hasCelebrated = false;
+        }
+        return anyWin;
       }
 
       function renderCard() {
         var grid = document.getElementById("bingoGrid");
         grid.innerHTML = "";
 
-        var letters = ["B", "I", "N", "G", "O"];
-        for (var h = 0; h < 5; h++) {
-          var header = document.createElement("div");
-          header.className = "bingo-cell header-cell";
-          header.textContent = letters[h];
-          grid.appendChild(header);
-        }
-
-        if (!currentCard.length) {
-          for (var i = 0; i < 25; i++) {
-            var empty = document.createElement("div");
-            empty.className = "bingo-cell";
-            empty.textContent = "—";
-            grid.appendChild(empty);
-          }
-          positionCellsFallback();
-          return;
-        }
-
         for (var idx = 0; idx < 25; idx++) {
           (function (i) {
             var title = currentCard[i];
-            var cell = document.createElement("div");
-            cell.className = "bingo-cell";
-            if (title === "FREE") {
-              cell.classList.add("free");
-              cell.textContent = "FREE";
+            var isFree = (title === "FREE" || i === 12);
+            var tile = document.createElement("div");
+            tile.className = "tile" +
+              (isFree ? " free-space" : "") +
+              (marked[i] ? " marked" : "") +
+              (winningTiles[i] ? " winner" : "");
+            tile.style.setProperty("--rot", (rotations[i] || -8) + "deg");
+
+            if (isFree) {
+              tile.innerHTML =
+                '<span class="free-badge">FREE SPACE</span>' +
+                '<span class="tile-text">20-Min Guitar Solo</span>' +
+                '<div class="stamp">' + createPickSVG() + '</div>';
             } else {
-              cell.textContent = title;
-              if (marked[i]) cell.classList.add("marked");
-              cell.addEventListener("click", function (e) {
+              tile.innerHTML =
+                '<span class="tile-text">' + escapeHtml(title) + '</span>' +
+                '<div class="stamp">' + createPickSVG() + '</div>';
+              tile.addEventListener("click", function (e) {
                 e.preventDefault();
                 toggleMark(i);
               });
             }
-            grid.appendChild(cell);
+            grid.appendChild(tile);
           })(idx);
         }
-        positionCellsFallback();
       }
 
       function toggleMark(idx) {
         if (idx === 12) return;
         marked[idx] = !marked[idx];
+        playStrumSound(marked[idx] ? 1 : 0.75);
+        evaluateBingo(true);
         renderCard();
-        updateBingoStatus();
         saveState();
-        if (checkBingo()) {
-          document.getElementById("bingoModal").classList.add("show");
-        }
       }
 
       function clearMarks() {
-        marked = [];
+        hasCelebrated = false;
         for (var i = 0; i < 25; i++) {
-          marked[i] = (i === 12 && currentCard[12] === "FREE");
+          marked[i] = (i === 12);
         }
+        evaluateBingo(false);
         renderCard();
-        updateBingoStatus();
         saveState();
-        toast("Marks cleared");
+        toast("Stamps cleared");
       }
 
-      function checkBingo() {
-        var lines = [
-          [0,1,2,3,4],[5,6,7,8,9],[10,11,12,13,14],[15,16,17,18,19],[20,21,22,23,24],
-          [0,5,10,15,20],[1,6,11,16,21],[2,7,12,17,22],[3,8,13,18,23],[4,9,14,19,24],
-          [0,6,12,18,24],[4,8,12,16,20]
-        ];
-        for (var L = 0; L < lines.length; L++) {
-          var ok = true;
-          for (var j = 0; j < 5; j++) {
-            if (!marked[lines[L][j]]) { ok = false; break; }
-          }
-          if (ok) return true;
-        }
-        return false;
-      }
-
-      function updateBingoStatus() {
-        var el = document.getElementById("bingoStatus");
-        if (!currentCard.length) {
-          el.textContent = "Generate a card to start";
-          el.classList.remove("bingo");
-          return;
-        }
-        if (checkBingo()) {
-          el.textContent = "★ BINGO! ★";
-          el.classList.add("bingo");
-        } else {
-          var count = 0;
-          for (var i = 0; i < marked.length; i++) if (marked[i]) count++;
-          el.textContent = count + " marked · Center is FREE";
-          el.classList.remove("bingo");
-        }
-      }
-
+      // Song Calling Functionality
       function callSong() {
         var available = [];
         for (var i = 0; i < songBank.length; i++) {
           if (calledSongs.indexOf(songBank[i]) === -1) available.push(songBank[i]);
         }
         if (!available.length) {
-          toast("All songs have been called");
+          toast("All songs have been called!");
           return;
         }
         var pick = available[Math.floor(Math.random() * available.length)];
         calledSongs.push(pick);
+
         var last = document.getElementById("lastCalled");
-        last.textContent = pick;
+        last.textContent = "🎶 " + pick;
         last.classList.remove("empty");
 
         var idx = currentCard.indexOf(pick);
         if (idx !== -1 && idx !== 12) {
           marked[idx] = true;
+          playStrumSound(1.1);
+          evaluateBingo(true);
           renderCard();
-          updateBingoStatus();
-          if (checkBingo()) {
-            document.getElementById("bingoModal").classList.add("show");
-          }
+          toast("Matched on your card: " + pick);
+        } else {
+          playStrumSound(0.9);
         }
+
         renderCalledList();
         renderSongList();
         saveState();
@@ -974,6 +1222,7 @@
         toast("Call history cleared");
       }
 
+      // Saved Cards Functionality
       function saveCard() {
         if (!currentCard.length) {
           toast("Generate a card first");
@@ -986,12 +1235,13 @@
           id: Date.now(),
           name: name,
           card: currentCard.slice(),
-          marked: marked.slice()
+          marked: marked.slice(),
+          rotations: rotations.slice()
         });
         if (savedCards.length > 20) savedCards.pop();
         renderSavedList();
         saveState();
-        toast("Card saved");
+        toast("Card saved!");
       }
 
       function renderSavedList() {
@@ -1007,8 +1257,8 @@
             div.className = "saved-item";
             div.innerHTML = "<span>" + escapeHtml(sc.name) + "</span>" +
               '<div class="actions">' +
-              '<button type="button" class="load">Load</button>' +
-              '<button type="button" class="del">✕</button></div>';
+              '<button type="button" class="btn-primary load">Load</button>' +
+              '<button type="button" class="btn-danger del">✕</button></div>';
             div.querySelector(".load").addEventListener("click", function () { loadCard(sc.id); });
             div.querySelector(".del").addEventListener("click", function () { deleteSaved(sc.id); });
             list.appendChild(div);
@@ -1021,10 +1271,11 @@
           if (savedCards[i].id === id) {
             currentCard = savedCards[i].card.slice();
             marked = savedCards[i].marked.slice();
+            rotations = savedCards[i].rotations ? savedCards[i].rotations.slice() : new Array(25).fill(-8);
+            evaluateBingo(false);
             renderCard();
-            updateBingoStatus();
             saveState();
-            toast("Card loaded");
+            toast("Saved card loaded");
             return;
           }
         }
@@ -1036,6 +1287,7 @@
         saveState();
       }
 
+      // Print Functionality
       function printCard() {
         if (!currentCard.length) {
           toast("Generate a card first");
@@ -1049,10 +1301,10 @@
         var cells = [];
         for (var i = 0; i < 25; i++) {
           var t = currentCard[i];
-          var style = "border:1px solid #333;padding:8px 4px;text-align:center;font-size:11px;height:70px;";
-          if (marked[i]) style += "background:#1a5c3a;color:#fff;";
-          if (t === "FREE") style += "background:#f0a500;color:#111;font-weight:800;";
-          cells.push('<td style="' + style + '">' + (t === "FREE" ? "FREE" : escapeHtml(t)) + "</td>");
+          var style = "border:2px solid #2b1810;padding:8px 4px;text-align:center;font-size:11px;font-weight:bold;height:74px;background:#fffaf0;color:#2b1810;";
+          if (marked[i] && i !== 12) style += "background:#f5d5c8;text-decoration:underline;";
+          if (t === "FREE" || i === 12) style += "background:#d99b26;color:#2b1810;font-weight:900;";
+          cells.push('<td style="' + style + '">' + ((t === "FREE" || i === 12) ? "FREE SPACE<br>20-Min Guitar Solo" : escapeHtml(t)) + "</td>");
         }
         var rows = "";
         for (var r = 0; r < 5; r++) {
@@ -1061,24 +1313,26 @@
         win.document.write(
           "<!DOCTYPE html><html><head><title>Jam Band Bingo Card</title>" +
           "<meta name='viewport' content='width=device-width'>" +
-          "<style>body{font-family:sans-serif;text-align:center;padding:20px;}" +
-          "h1{color:#c48400;margin-bottom:4px;}table{border-collapse:collapse;margin:12px auto;width:100%;max-width:480px;}" +
-          "th{background:#f0a500;color:#111;padding:8px;font-size:16px;}</style></head><body>" +
-          "<h1>Jam Band Bingo: put it on the list</h1>" +
-          "<p style='color:#666;font-size:13px;'>More than 6 drummers on the list by 3 = free square</p>" +
+          "<style>body{font-family:Georgia,serif;text-align:center;padding:20px;background:#f5ebd6;color:#2b1810;}" +
+          "h1{margin:4px 0;text-transform:uppercase;}table{border-collapse:collapse;margin:12px auto;width:100%;max-width:500px;}" +
+          "th{background:#2b1810;color:#d99b26;padding:8px;font-size:18px;border:2px solid #2b1810;}</style></head><body>" +
+          "<div style='font-weight:bold;color:#c84b26;'>★ PUT IT ON THE LIST! ★</div>" +
+          "<h1>Jam Band Bingo</h1>" +
+          "<p style='font-size:12px;font-style:italic;'>More than 6 drummers on the list by 3 = free square</p>" +
           "<table><tr><th>B</th><th>I</th><th>N</th><th>G</th><th>O</th></tr>" + rows + "</table>" +
           "<script>setTimeout(function(){window.print();},300);<\/script></body></html>"
         );
         win.document.close();
       }
 
+      // Share Functionality
       function getShareUrl() {
         return "https://playful-rugelach-35b4ae.netlify.app/";
       }
 
       function shareOnFacebook(customText) {
         var url = encodeURIComponent(getShareUrl());
-        var quote = encodeURIComponent(customText || "I'm playing Jam Band Bingo — put it on the list! ");
+        var quote = encodeURIComponent(customText || "I'm playing Jam Band Bingo — put it on the list!");
         var sharer = "https://www.facebook.com/sharer/sharer.php?u=" + url + "&quote=" + quote;
         var w = window.open(sharer, "_blank");
         if (!w) toast("Allow pop-ups to share on Facebook");
@@ -1088,7 +1342,7 @@
         var text = "Jam Band Bingo: put it on the list\n" + getShareUrl();
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(text).then(function () {
-            toast("Link copied — paste it on Facebook");
+            toast("Link copied — paste it anywhere!");
           }).catch(function () {
             fallbackCopy(text);
           });
@@ -1108,9 +1362,9 @@
         ta.setSelectionRange(0, text.length);
         try {
           document.execCommand("copy");
-          toast("Link copied — paste it on Facebook");
+          toast("Link copied — paste it anywhere!");
         } catch (e) {
-          toast("Copy failed — copy the address from the bar");
+          toast("Copy failed — copy the URL from your browser");
         }
         document.body.removeChild(ta);
       }
@@ -1138,30 +1392,25 @@
       }
 
       function init() {
-        var loaded = loadState();
-        if (!loaded || !songBank.length) {
+        loadState();
+        if (!songBank.length) {
           songBank = DEFAULT_SONGS.slice();
         }
-        if (!marked.length) {
-          marked = [];
-          for (var i = 0; i < 25; i++) marked[i] = false;
-        }
+
+        document.getElementById("soundToggleBtn").textContent = soundEnabled ? "🔊 Sound: ON" : "🔇 Sound: OFF";
 
         renderSongList();
         renderSavedList();
+        renderCalledList();
 
-        if (currentCard.length) {
-          renderCard();
-          updateBingoStatus();
-          renderCalledList();
-          if (calledSongs.length) {
-            var last = document.getElementById("lastCalled");
-            last.textContent = calledSongs[calledSongs.length - 1];
-            last.classList.remove("empty");
-          }
-        } else {
-          generateCard();
+        if (calledSongs.length) {
+          var last = document.getElementById("lastCalled");
+          last.textContent = "🎶 " + calledSongs[calledSongs.length - 1];
+          last.classList.remove("empty");
         }
+
+        // Generate a fresh random card each session while keeping the user's saved song bank
+        generateCard(true);
 
         document.getElementById("addSongBtn").addEventListener("click", addSong);
         document.getElementById("newSongInput").addEventListener("keydown", function (e) {
@@ -1171,21 +1420,24 @@
           }
         });
         document.getElementById("resetBankBtn").addEventListener("click", resetBank);
-        document.getElementById("newCardBtn").addEventListener("click", generateCard);
+        document.getElementById("newCardBtn").addEventListener("click", function () { generateCard(false); });
         document.getElementById("saveCardBtn").addEventListener("click", saveCard);
         document.getElementById("printCardBtn").addEventListener("click", printCard);
         document.getElementById("clearMarksBtn").addEventListener("click", clearMarks);
         document.getElementById("callSongBtn").addEventListener("click", callSong);
         document.getElementById("resetCallsBtn").addEventListener("click", resetCalls);
+
+        document.getElementById("soundToggleBtn").addEventListener("click", function (e) {
+          soundEnabled = !soundEnabled;
+          e.target.textContent = soundEnabled ? "🔊 Sound: ON" : "🔇 Sound: OFF";
+          saveState();
+        });
+
         document.getElementById("closeBingoBtn").addEventListener("click", function () {
           document.getElementById("bingoModal").classList.remove("show");
         });
 
         initShareButtons();
-
-        window.addEventListener("resize", function () {
-          positionCellsFallback();
-        });
       }
 
       if (document.readyState === "loading") {

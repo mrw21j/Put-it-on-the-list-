@@ -11,7 +11,7 @@
   <meta property="og:description" content="Play Jam Band Bingo with classic covers and jam standards. Generate a card, call songs, and get five in a row. Put it on the list!" />
   <meta property="og:url" content="https://playful-rugelach-35b4ae.netlify.app/" />
   <meta property="og:site_name" content="Jam Band Bingo" />
-  <meta name="description" content="Play Jam Band Bingo with classic covers and jam standards. Generate a card, call songs, and get five in a row." />
+  <meta name="description" content="Play Jam Band Bingo. Generate a card and get five in a row." />
   <meta name="theme-color" content="#2b1810" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
@@ -19,7 +19,7 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Jam Band Bingo: put it on the list" />
-  <meta name="twitter:description" content="Classic covers · jam standards · put it on the list" />
+  <meta name="twitter:description" content="Play along with the band!" />
 
   <style>
     :root {
@@ -755,13 +755,13 @@
     </div>
     <div class="song-bank-list" id="songList"></div>
     <div class="bank-meta">
-      <span>Min 24 songs needed to deal a card</span>
+      <span>***</span>
       <button class="btn-ghost" id="resetBankBtn" type="button" style="font-size:0.74rem; padding:5px 9px;">Reset to original list</button>
     </div>
   </div>
 
   <footer>
-    Jam Band Bingo · put it on the list · runs offline in your browser
+    Jam Band Bingo · runs offline in your browser
   </footer>
 
   <div class="toast" id="toast"></div>
@@ -787,7 +787,7 @@
         "Take Me to the River","Polk Salad Annie","I Got a Woman","Shake, Rattle and Roll",
         "Congo Square","The Thrill Is Gone","You Need a Man","Can't You See","Angel from Montgomery",
         "Givin' It Up for Your Love","634-5789","Leap of Faith","Brown Sugar","Crazy Mama",
-        "Young Blood","Dead Flowers","Use Me","(I Can't Get No) Satisfaction","For What It's Worth",
+        "Young Blood","Dead Flowers","(I Can't Get No) Satisfaction","For What It's Worth",
         "Unchain My Heart","Heard It Through the Grapevine","Kansas City","Walkin' the Dog",
         "Walkin' Blues","Southbound Train","Clyde","One Way Out","Before You Accuse Me","Why Me",
         "Jumpin' Jack Flash","Dixie Chicken","The Future's So Bright","Satisfied",
@@ -1327,7 +1327,7 @@
 
       // Share Functionality
       function getShareUrl() {
-        return "https://playful-rugelach-35b4ae.netlify.app/";
+        return "https://https://jambandbingo.netlify.app/";
       }
 
       function shareOnFacebook(customText) {
@@ -1384,7 +1384,7 @@
           btn.addEventListener("click", function () {
             navigator.share({
               title: "Jam Band Bingo: put it on the list",
-              text: "Play Jam Band Bingo with classic covers and jam standards!",
+              text: "Play Jam Band Bingo!!!",
               url: getShareUrl()
             }).catch(function () {});
           });

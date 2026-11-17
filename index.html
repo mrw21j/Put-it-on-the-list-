@@ -726,810 +726,6 @@
       var savedCards = [];
       var soundEnabled = true;
       var hasCelebrated = false;
-      var STORAGE_KEY = "jamBandBingo_poster_vrgba(43, 24, 16, 0.35);
-      text-align: center;
-    }
-
-    .last-called {
-      background: #fffaf0;
-      border: 2.5px solid var(--ink-brown);
-      border-radius: 9px;
-      padding: 10px 12px;
-      margin: 8px 0;
-      min-height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Georgia', serif;
-      font-size: 1.08rem;
-      font-weight: 900;
-      color: var(--rust-orange);
-      box-shadow: inset 0 2px 4px rgba(43, 24, 16, 0.1);
-    }
-
-    .last-called.empty {
-      font-family: inherit;
-      color: rgba(43, 24, 16, 0.55);
-      font-weight: 700;
-      font-size: 0.85rem;
-    }
-
-    .called-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      justify-content: center;
-      max-height: 76px;
-      overflow-y: auto;
-      margin-top: 6px;
-      padding: 2px;
-    }
-
-    .called-chip {
-      background: var(--poster-paper);
-      border: 1.5px solid var(--ink-brown);
-      border-radius: 999px;
-      padding: 2px 9px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--ink-brown);
-    }
-
-    /* Share Bar */
-    .share-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      justify-content: center;
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 2px dashed rgba(43, 24, 16, 0.35);
-    }
-
-    /* Sub-panels (Saved Cards & Song Bank) */
-    .panel-title {
-      margin: 0 0 8px;
-      font-family: 'Georgia', serif;
-      font-size: 1.1rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--ink-brown);
-      border-bottom: 2px solid var(--ink-brown);
-      padding-bottom: 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .saved-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      max-height: 170px;
-      overflow-y: auto;
-    }
-
-    .saved-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #fffaf0;
-      border: 2px solid var(--ink-brown);
-      border-radius: 8px;
-      padding: 6px 10px;
-      font-size: 0.85rem;
-      font-weight: 800;
-    }
-
-    .saved-item .actions {
-      display: flex;
-      gap: 6px;
-    }
-
-    .saved-item button {
-      padding: 4px 9px;
-      font-size: 0.74rem;
-      box-shadow: 1px 2px 0 var(--ink-brown);
-    }
-
-    .empty-note {
-      color: rgba(43, 24, 16, 0.6);
-      font-size: 0.84rem;
-      font-weight: 700;
-      text-align: center;
-      padding: 8px;
-      margin: 0;
-    }
-
-    /* Song Bank Panel */
-    .add-hint {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: rgba(43, 24, 16, 0.78);
-      margin: 0 0 10px;
-      line-height: 1.35;
-    }
-
-    .song-bank-controls {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-
-    .song-bank-controls input {
-      flex: 1;
-      background: #fffdf8;
-      border: 2.5px solid var(--ink-brown);
-      color: var(--ink-brown);
-      padding: 9px 11px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 700;
-      user-select: text;
-      -webkit-user-select: text;
-    }
-
-    .song-bank-controls input:focus {
-      outline: none;
-      border-color: var(--rust-orange);
-      background: #fff;
-    }
-
-    .song-bank-controls button {
-      min-width: 52px;
-      font-size: 1.2rem;
-      padding: 6px 14px;
-    }
-
-    .song-bank-list {
-      max-height: 310px;
-      overflow-y: auto;
-      border: 2.5px solid var(--ink-brown);
-      border-radius: 9px;
-      background: #fffaf0;
-    }
-
-    .song-bank-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 7px 10px;
-      border-bottom: 1.5px solid rgba(43, 24, 16, 0.18);
-      font-size: 0.88rem;
-      font-weight: 800;
-      gap: 8px;
-    }
-
-    .song-bank-item:last-child {
-      border-bottom: none;
-    }
-
-    .song-bank-item.called {
-      opacity: 0.48;
-      text-decoration: line-through;
-      color: var(--teal-groove);
-      background: var(--poster-paper);
-    }
-
-    .song-bank-item button {
-      background: #b93829;
-      color: #fff;
-      border: 2px solid var(--ink-brown);
-      padding: 3px 8px;
-      font-size: 0.75rem;
-      box-shadow: 1px 1px 0 var(--ink-brown);
-      flex-shrink: 0;
-    }
-
-    .bank-meta {
-      font-size: 0.8rem;
-      font-weight: 800;
-      color: var(--ink-brown);
-      margin-top: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: 1.2rem;
-      left: 50%;
-      transform: translateX(-50%) translateY(140%);
-      background: var(--ink-brown);
-      border: 2.5px solid var(--mustard-gold);
-      color: #fff8eb;
-      padding: 9px 16px;
-      border-radius: 10px;
-      font-weight: 800;
-      font-size: 0.88rem;
-      z-index: 150;
-      transition: transform 0.28s ease;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.55);
-      max-width: 90vw;
-      text-align: center;
-    }
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* Bingo Celebration Modal */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(18, 10, 6, 0.78);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 200;
-      padding: 16px;
-    }
-    .modal-overlay.show {
-      display: flex;
-    }
-
-    .modal-box {
-      background: var(--poster-cream);
-      border: 4px solid var(--ink-brown);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.65), inset 0 0 0 3px var(--mustard-gold);
-      border-radius: 14px;
-      padding: 22px 18px;
-      text-align: center;
-      max-width: 360px;
-      width: 100%;
-    }
-
-    .modal-box h2 {
-      font-family: 'Georgia', serif;
-      color: var(--rust-orange);
-      text-shadow: 1px 1px 0 var(--mustard-gold);
-      font-size: 2rem;
-      margin: 0 0 6px;
-    }
-
-    .modal-box p {
-      color: var(--ink-brown);
-      font-weight: 800;
-      margin: 0 0 14px;
-      font-size: 0.95rem;
-    }
-
-    /* Confetti Canvas */
-    #confetti-canvas {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 180;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: rgba(245, 235, 214, 0.72);
-      margin-top: 2px;
-    }
-  </style>
-</head>
-<body>
-  <canvas id="confetti-canvas"></canvas>
-
-  <!-- MAIN POSTER CARD -->
-  <div class="poster-frame">
-    <header>
-      <div class="tagline-pill">★ Put it on the list! ★</div>
-      <h1>Jam Band Bingo</h1>
-      <div class="subtitle">Play along with the band!</div>
-    </header>
-
-    <div class="card-meta-bar">
-      <span class="section-label">Your Card</span>
-      <span class="status" id="bingoStatus">Tap squares to stamp · Center is FREE</span>
-    </div>
-
-    <div class="controls">
-      <button class="btn-primary" id="newCardBtn" type="button">🎲 New Card</button>
-      <button class="btn-ghost" id="saveCardBtn" type="button">💾 Save</button>
-      <button class="btn-ghost" id="printCardBtn" type="button">🖨️ Print</button>
-      <button class="btn-danger" id="clearMarksBtn" type="button">↺ Clear</button>
-      <button class="btn-secondary" id="soundToggleBtn" type="button">🔊 Sound: ON</button>
-    </div>
-
-    <div class="bingo-header-row">
-      <div class="bingo-letter">B</div>
-      <div class="bingo-letter">I</div>
-      <div class="bingo-letter">N</div>
-      <div class="bingo-letter">G</div>
-      <div class="bingo-letter">O</div>
-    </div>
-
-    <div class="bingo-grid" id="bingoGrid"></div>
-    <p class="rule-note">More than 6 drummers on the list by 3 = free square</p>
-
-    <div class="bingo-banner" id="bingoBanner">
-      <h2>🎉 BINGO! PUT IT ON THE LIST! 🎉</h2>
-      <p>You got five in a row! Hit "New Card" for the next set.</p>
-    </div>
-
-    <!-- CALL NEXT SONG SECTION -->
-    <div class="call-section">
-      <div class="controls" style="margin-bottom: 6px;">
-        <button class="btn-success" id="callSongBtn" type="button">📢 Call Next Song</button>
-        <button class="btn-ghost" id="resetCallsBtn" type="button">Reset Calls</button>
-      </div>
-      <div class="last-called empty" id="lastCalled">No songs called yet</div>
-      <div class="called-list" id="calledList"></div>
-    </div>
-
-    <!-- SHARE BAR -->
-    <div class="share-bar">
-      <button class="btn-ghost" id="copyLinkBtn" type="button">Copy Link</button>
-      <button class="btn-secondary" id="shareNativeBtn" type="button" style="display:none;">Share…</button>
-    </div>
-  </div>
-
-  <!-- SAVED CARDS PANEL -->
-  <div class="poster-frame">
-    <h2 class="panel-title">💾 Saved Cards</h2>
-    <div class="saved-list" id="savedList">
-      <p class="empty-note">No saved cards yet</p>
-    </div>
-  </div>
-
-  <!-- SONG BANK PANEL -->
-  <div class="poster-frame">
-    <h2 class="panel-title">
-      <span>🎸 Song Bank</span>
-      <span style="font-size:0.8rem; color:var(--teal-groove);"><span id="songCount">0</span> songs</span>
-    </h2>
-    <p class="add-hint">Anyone can add songs on this device. New songs stay in your browser and are used the next time you generate a card.</p>
-    <div class="song-bank-controls">
-      <input type="text" id="newSongInput" placeholder="Type a song title and tap +" maxlength="80" autocomplete="off" autocorrect="off" autocapitalize="words" />
-      <button class="btn-primary" id="addSongBtn" type="button" title="Add song to the bank">+</button>
-    </div>
-    <div class="song-bank-list" id="songList"></div>
-    <div class="bank-meta">
-      <span>***</span>
-      <button class="btn-ghost" id="resetBankBtn" type="button" style="font-size:0.74rem; padding:5px 9px;">Reset to original list</button>
-    </div>
-  </div>
-
-  <footer>
-    Jam Band Bingo · runs offline in your browser
-  </footer>
-
-  <div class="toast" id="toast"></div>
-
-  <!-- BINGO MODAL -->
-  <div class="modal-overlay" icity: 1; }
-    }
-
-    /* Call Next Song Section */
-    .call-section {
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 2px dashed rgba(43, 24, 16, 0.35);
-      text-align: center;
-    }
-
-    .last-called {
-      background: #fffaf0;
-      border: 2.5px solid var(--ink-brown);
-      border-radius: 9px;
-      padding: 10px 12px;
-      margin: 8px 0;
-      min-height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Georgia', serif;
-      font-size: 1.08rem;
-      font-weight: 900;
-      color: var(--rust-orange);
-      box-shadow: inset 0 2px 4px rgba(43, 24, 16, 0.1);
-    }
-
-    .last-called.empty {
-      font-family: inherit;
-      color: rgba(43, 24, 16, 0.55);
-      font-weight: 700;
-      font-size: 0.85rem;
-    }
-
-    .called-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      justify-content: center;
-      max-height: 76px;
-      overflow-y: auto;
-      margin-top: 6px;
-      padding: 2px;
-    }
-
-    .called-chip {
-      background: var(--poster-paper);
-      border: 1.5px solid var(--ink-brown);
-      border-radius: 999px;
-      padding: 2px 9px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--ink-brown);
-    }
-
-    /* Share Bar */
-    .share-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      justify-content: center;
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 2px dashed rgba(43, 24, 16, 0.35);
-    }
-
-    /* Sub-panels (Saved Cards & Song Bank) */
-    .panel-title {
-      margin: 0 0 8px;
-      font-family: 'Georgia', serif;
-      font-size: 1.1rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--ink-brown);
-      border-bottom: 2px solid var(--ink-brown);
-      padding-bottom: 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .saved-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      max-height: 170px;
-      overflow-y: auto;
-    }
-
-    .saved-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #fffaf0;
-      border: 2px solid var(--ink-brown);
-      border-radius: 8px;
-      padding: 6px 10px;
-      font-size: 0.85rem;
-      font-weight: 800;
-    }
-
-    .saved-item .actions {
-      display: flex;
-      gap: 6px;
-    }
-
-    .saved-item button {
-      padding: 4px 9px;
-      font-size: 0.74rem;
-      box-shadow: 1px 2px 0 var(--ink-brown);
-    }
-
-    .empty-note {
-      color: rgba(43, 24, 16, 0.6);
-      font-size: 0.84rem;
-      font-weight: 700;
-      text-align: center;
-      padding: 8px;
-      margin: 0;
-    }
-
-    /* Song Bank Panel */
-    .add-hint {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: rgba(43, 24, 16, 0.78);
-      margin: 0 0 10px;
-      line-height: 1.35;
-    }
-
-    .song-bank-controls {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-
-    .song-bank-controls input {
-      flex: 1;
-      background: #fffdf8;
-      border: 2.5px solid var(--ink-brown);
-      color: var(--ink-brown);
-      padding: 9px 11px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 700;
-      user-select: text;
-      -webkit-user-select: text;
-    }
-
-    .song-bank-controls input:focus {
-      outline: none;
-      border-color: var(--rust-orange);
-      background: #fff;
-    }
-
-    .song-bank-controls button {
-      min-width: 52px;
-      font-size: 1.2rem;
-      padding: 6px 14px;
-    }
-
-    .song-bank-list {
-      max-height: 310px;
-      overflow-y: auto;
-      border: 2.5px solid var(--ink-brown);
-      border-radius: 9px;
-      background: #fffaf0;
-    }
-
-    .song-bank-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 7px 10px;
-      border-bottom: 1.5px solid rgba(43, 24, 16, 0.18);
-      font-size: 0.88rem;
-      font-weight: 800;
-      gap: 8px;
-    }
-
-    .song-bank-item:last-child {
-      border-bottom: none;
-    }
-
-    .song-bank-item.called {
-      opacity: 0.48;
-      text-decoration: line-through;
-      color: var(--teal-groove);
-      background: var(--poster-paper);
-    }
-
-    .song-bank-item button {
-      background: #b93829;
-      color: #fff;
-      border: 2px solid var(--ink-brown);
-      padding: 3px 8px;
-      font-size: 0.75rem;
-      box-shadow: 1px 1px 0 var(--ink-brown);
-      flex-shrink: 0;
-    }
-
-    .bank-meta {
-      font-size: 0.8rem;
-      font-weight: 800;
-      color: var(--ink-brown);
-      margin-top: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: 1.2rem;
-      left: 50%;
-      transform: translateX(-50%) translateY(140%);
-      background: var(--ink-brown);
-      border: 2.5px solid var(--mustard-gold);
-      color: #fff8eb;
-      padding: 9px 16px;
-      border-radius: 10px;
-      font-weight: 800;
-      font-size: 0.88rem;
-      z-index: 150;
-      transition: transform 0.28s ease;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.55);
-      max-width: 90vw;
-      text-align: center;
-    }
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* Bingo Celebration Modal */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(18, 10, 6, 0.78);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 200;
-      padding: 16px;
-    }
-    .modal-overlay.show {
-      display: flex;
-    }
-
-    .modal-box {
-      background: var(--poster-cream);
-      border: 4px solid var(--ink-brown);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.65), inset 0 0 0 3px var(--mustard-gold);
-      border-radius: 14px;
-      padding: 22px 18px;
-      text-align: center;
-      max-width: 360px;
-      width: 100%;
-    }
-
-    .modal-box h2 {
-      font-family: 'Georgia', serif;
-      color: var(--rust-orange);
-      text-shadow: 1px 1px 0 var(--mustard-gold);
-      font-size: 2rem;
-      margin: 0 0 6px;
-    }
-
-    .modal-box p {
-      color: var(--ink-brown);
-      font-weight: 800;
-      margin: 0 0 14px;
-      font-size: 0.95rem;
-    }
-
-    /* Confetti Canvas */
-    #confetti-canvas {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 180;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: rgba(245, 235, 214, 0.72);
-      margin-top: 2px;
-    }
-  </style>
-</head>
-<body>
-  <canvas id="confetti-canvas"></canvas>
-
-  <!-- MAIN POSTER CARD -->
-  <div class="poster-frame">
-    <header>
-      <div class="tagline-pill">★ Put it on the list! ★</div>
-      <h1>Jam Band Bingo</h1>
-      <div class="subtitle">Play along with the band!</div>
-    </header>
-
-    <div class="card-meta-bar">
-      <span class="section-label">Your Card</span>
-      <span class="status" id="bingoStatus">Tap squares to stamp · Center is FREE</span>
-    </div>
-
-    <div class="controls">
-      <button class="btn-primary" id="newCardBtn" type="button">🎲 New Card</button>
-      <button class="btn-ghost" id="saveCardBtn" type="button">💾 Save</button>
-      <button class="btn-ghost" id="printCardBtn" type="button">🖨️ Print</button>
-      <button class="btn-danger" id="clearMarksBtn" type="button">↺ Clear</button>
-      <button class="btn-secondary" id="soundToggleBtn" type="button">🔊 Sound: ON</button>
-    </div>
-
-    <div class="bingo-header-row">
-      <div class="bingo-letter">B</div>
-      <div class="bingo-letter">I</div>
-      <div class="bingo-letter">N</div>
-      <div class="bingo-letter">G</div>
-      <div class="bingo-letter">O</div>
-    </div>
-
-    <div class="bingo-grid" id="bingoGrid"></div>
-    <p class="rule-note">More than 6 drummers on the list by 3 = free square</p>
-
-    <div class="bingo-banner" id="bingoBanner">
-      <h2>🎉 BINGO! PUT IT ON THE LIST! 🎉</h2>
-      <p>You got five in a row! Hit "New Card" for the next set.</p>
-    </div>
-
-    <!-- CALL NEXT SONG SECTION -->
-    <div class="call-section">
-      <div class="controls" style="margin-bottom: 6px;">
-        <button class="btn-success" id="callSongBtn" type="button">📢 Call Next Song</button>
-        <button class="btn-ghost" id="resetCallsBtn" type="button">Reset Calls</button>
-      </div>
-      <div class="last-called empty" id="lastCalled">No songs called yet</div>
-      <div class="called-list" id="calledList"></div>
-    </div>
-
-    <!-- SHARE BAR -->
-    <div class="share-bar">
-      <button class="btn-facebook" id="shareFbBtn" type="button">Share on Facebook</button>
-      <button class="btn-ghost" id="copyLinkBtn" type="button">Copy Link</button>
-      <button class="btn-secondary" id="shareNativeBtn" type="button" style="display:none;">Share…</button>
-    </div>
-  </div>
-
-  <!-- SAVED CARDS PANEL -->
-  <div class="poster-frame">
-    <h2 class="panel-title">💾 Saved Cards</h2>
-    <div class="saved-list" id="savedList">
-      <p class="empty-note">No saved cards yet</p>
-    </div>
-  </div>
-
-  <!-- SONG BANK PANEL -->
-  <div class="poster-frame">
-    <h2 class="panel-title">
-      <span>🎸 Song Bank</span>
-      <span style="font-size:0.8rem; color:var(--teal-groove);"><span id="songCount">0</span> songs</span>
-    </h2>
-    <p class="add-hint">Anyone can add songs on this device. New songs stay in your browser and are used the next time you generate a card.</p>
-    <div class="song-bank-controls">
-      <input type="text" id="newSongInput" placeholder="Type a song title and tap +" maxlength="80" autocomplete="off" autocorrect="off" autocapitalize="words" />
-      <button class="btn-primary" id="addSongBtn" type="button" title="Add song to the bank">+</button>
-    </div>
-    <div class="song-bank-list" id="songList"></div>
-    <div class="bank-meta">
-      <span>***</span>
-      <button class="btn-ghost" id="resetBankBtn" type="button" style="font-size:0.74rem; padding:5px 9px;">Reset to original list</button>
-    </div>
-  </div>
-
-  <footer>
-    Jam Band Bingo · runs offline in your browser
-  </footer>
-
-  <div class="toast" id="toast"></div>
-
-  <!-- BINGO MODAL -->
-  <div class="modal-overlay" id="bingoModal">
-    <div class="modal-box">
-      <h2>🎉 BINGO! 🎉</h2>
-      <p>You got five in a row. Put it on the list!</p>
-      <button class="btn-success" id="closeBingoBtn" type="button" style="width:100%; margin-bottom:8px;">Keep Playing</button>
-      <button class="btn-facebook" id="shareBingoBtn" type="button" style="width:100%;">Share the win on Facebook</button>
-    </div>
-  </div>
-
-  <script>
-    (function () {
-      "use strict";
-
-      var DEFAULT_SONGS = [
-        "The Breeze","Mustang Sally","Honky Tonk Women","Ain't No Sunshine","Low Rider",
-        "Love Her with a Feeling","Baby Wrote Me a Letter","Statesboro Blues","Pride and Joy",
-        "Steamroller","Lowdown","Red House","Miss You","Who Do You Love","Messin' with the Kid",
-        "Take Me to the River","Polk Salad Annie","I Got a Woman","Shake, Rattle and Roll",
-        "Congo Square","The Thrill Is Gone","You Need a Man","Can't You See","Angel from Montgomery",
-        "Givin' It Up for Your Love","634-5789","Leap of Faith","Brown Sugar","Crazy Mama",
-        "Young Blood","Dead Flowers","(I Can't Get No) Satisfaction","For What It's Worth",
-        "Unchain My Heart","Heard It Through the Grapevine","Kansas City","Walkin' the Dog",
-        "Walkin' Blues","Southbound Train","Clyde","One Way Out","Before You Accuse Me","Why Me",
-        "Jumpin' Jack Flash","Dixie Chicken","The Future's So Bright","Satisfied",
-        "She Loves My Automobile","Mojo Workin'","Pink Cadillac","Use me up","I Hear You Knockin","Sweet Home Chicage",
-		"Random Delyn Song","The Weight","Cover of the Rolling Stone","Why You Been Gone So Long","Shaky Ground",
-		"Nutbush City Limit","Hound Dog"
-      ];
-
-      var songBank = [];
-      var currentCard = [];
-      var marked = [];
-      var rotations = [];
-      var winningTiles = [];
-      var calledSongs = [];
-      var savedCards = [];
-      var soundEnabled = true;
-      var hasCelebrated = false;
       var STORAGE_KEY = "jamBandBingo_poster_v1";
 
       function toast(msg, ms) {
@@ -1565,7 +761,6 @@
             currentCard: currentCard,
             marked: marked,
             rotations: rotations,
-            calledSongs: calledSongs,
             savedCards: savedCards,
             soundEnabled: soundEnabled
           }));
@@ -1577,11 +772,10 @@
           var raw = localStorage.getItem(STORAGE_KEY);
           if (!raw) return false;
           var data = JSON.parse(raw);
-          songBank = (data.songBank && data.songBank.length) ? data.songBank : DEFAULT_SONGS.slice();
+          songBank = (data.songBank && data.songBank.length) ? data.songBank : [];
           currentCard = data.currentCard || [];
           marked = data.marked || [];
           rotations = data.rotations || [];
-          calledSongs = data.calledSongs || [];
           savedCards = data.savedCards || [];
           if (typeof data.soundEnabled === "boolean") soundEnabled = data.soundEnabled;
           return true;
@@ -1707,7 +901,7 @@
         for (var i = 0; i < sorted.length; i++) {
           (function (song) {
             var div = document.createElement("div");
-            div.className = "song-bank-item" + (calledSongs.indexOf(song) !== -1 ? " called" : "");
+            div.className = "song-bank-item";
             div.innerHTML = "<span>" + escapeHtml(song) + "</span><button type=\"button\" title=\"Remove\">✕</button>";
             div.querySelector("button").addEventListener("click", function () { removeSong(song); });
             list.appendChild(div);
@@ -1751,8 +945,8 @@
       }
 
       function resetBank() {
-        if (!window.confirm("Reset song bank to the original 52 songs? Your added songs will be removed.")) return;
-        songBank = DEFAULT_SONGS.slice();
+        if (!window.confirm("Reset song bank to the original songs from songs.json? Your added songs will be removed.")) return;
+        songBank = defaultSongsCache.slice();
         renderSongList();
         saveState();
         toast("Song bank reset");
@@ -1862,11 +1056,13 @@
               tile.innerHTML =
                 '<span class="tile-text">' + escapeHtml(title) + '</span>' +
                 '<div class="stamp">' + createPickSVG() + '</div>';
-              tile.addEventListener("click", function (e) {
-                e.preventDefault();
-                toggleMark(i);
-              });
             }
+
+            tile.addEventListener("click", function (e) {
+              e.preventDefault();
+              toggleMark(i);
+            });
+
             grid.appendChild(tile);
           })(idx);
         }
@@ -1890,61 +1086,6 @@
         renderCard();
         saveState();
         toast("Stamps cleared");
-      }
-
-      // Song Calling Functionality
-      function callSong() {
-        var available = [];
-        for (var i = 0; i < songBank.length; i++) {
-          if (calledSongs.indexOf(songBank[i]) === -1) available.push(songBank[i]);
-        }
-        if (!available.length) {
-          toast("All songs have been called!");
-          return;
-        }
-        var pick = available[Math.floor(Math.random() * available.length)];
-        calledSongs.push(pick);
-
-        var last = document.getElementById("lastCalled");
-        last.textContent = "🎶 " + pick;
-        last.classList.remove("empty");
-
-        var idx = currentCard.indexOf(pick);
-        if (idx !== -1 && idx !== 12) {
-          marked[idx] = true;
-          playStrumSound(1.1);
-          evaluateBingo(true);
-          renderCard();
-          toast("Matched on your card: " + pick);
-        } else {
-          playStrumSound(0.9);
-        }
-
-        renderCalledList();
-        renderSongList();
-        saveState();
-      }
-
-      function renderCalledList() {
-        var list = document.getElementById("calledList");
-        list.innerHTML = "";
-        for (var i = calledSongs.length - 1; i >= 0; i--) {
-          var chip = document.createElement("span");
-          chip.className = "called-chip";
-          chip.textContent = calledSongs[i];
-          list.appendChild(chip);
-        }
-      }
-
-      function resetCalls() {
-        calledSongs = [];
-        var last = document.getElementById("lastCalled");
-        last.textContent = "No songs called yet";
-        last.classList.add("empty");
-        renderCalledList();
-        renderSongList();
-        saveState();
-        toast("Call history cleared");
       }
 
       // Saved Cards Functionality
@@ -2050,17 +1191,8 @@
         win.document.close();
       }
 
-      // Share Functionality
       function getShareUrl() {
-        return "https://https://jambandbingo.netlify.app/";
-      }
-
-      function shareOnFacebook(customText) {
-        var url = encodeURIComponent(getShareUrl());
-        var quote = encodeURIComponent(customText || "I'm playing Jam Band Bingo — put it on the list!");
-        var sharer = "https://www.facebook.com/sharer/sharer.php?u=" + url + "&quote=" + quote;
-        var w = window.open(sharer, "_blank");
-        if (!w) toast("Allow pop-ups to share on Facebook");
+        return "https://playful-rugelach-35b4ae.netlify.app/";
       }
 
       function copyLink() {
@@ -2095,13 +1227,7 @@
       }
 
       function initShareButtons() {
-        document.getElementById("shareFbBtn").addEventListener("click", function () {
-          shareOnFacebook();
-        });
         document.getElementById("copyLinkBtn").addEventListener("click", copyLink);
-        document.getElementById("shareBingoBtn").addEventListener("click", function () {
-          shareOnFacebook("BINGO! Just got five in a row on Jam Band Bingo. Put it on the list!");
-        });
 
         if (navigator.share) {
           var btn = document.getElementById("shareNativeBtn");
@@ -2116,26 +1242,40 @@
         }
       }
 
-      function init() {
-        loadState();
+      async function init() {
+        var hasStored = loadState();
+
+        // Fetch external songs.json if songBank isn't already stored/loaded locally
+        try {
+          var response = await fetch('songs.json');
+          if (response.ok) {
+            var fetchedSongs = await response.json();
+            if (Array.isArray(fetchedSongs) && fetchedSongs.length > 0) {
+              defaultSongsCache = fetchedSongs;
+              if (!hasStored || !songBank.length) {
+                songBank = defaultSongsCache.slice();
+              }
+            }
+          }
+        } catch (err) {
+          console.warn("Could not fetch songs.json, utilizing fallback songs.");
+        }
+
         if (!songBank.length) {
-          songBank = DEFAULT_SONGS.slice();
+          songBank = defaultSongsCache.slice();
         }
 
         document.getElementById("soundToggleBtn").textContent = soundEnabled ? "🔊 Sound: ON" : "🔇 Sound: OFF";
 
         renderSongList();
         renderSavedList();
-        renderCalledList();
 
-        if (calledSongs.length) {
-          var last = document.getElementById("lastCalled");
-          last.textContent = "🎶 " + calledSongs[calledSongs.length - 1];
-          last.classList.remove("empty");
+        if (!currentCard.length) {
+          generateCard(true);
+        } else {
+          evaluateBingo(false);
+          renderCard();
         }
-
-        // Generate a fresh random card each session while keeping the user's saved song bank
-        generateCard(true);
 
         document.getElementById("addSongBtn").addEventListener("click", addSong);
         document.getElementById("newSongInput").addEventListener("keydown", function (e) {
@@ -2149,8 +1289,6 @@
         document.getElementById("saveCardBtn").addEventListener("click", saveCard);
         document.getElementById("printCardBtn").addEventListener("click", printCard);
         document.getElementById("clearMarksBtn").addEventListener("click", clearMarks);
-        document.getElementById("callSongBtn").addEventListener("click", callSong);
-        document.getElementById("resetCallsBtn").addEventListener("click", resetCalls);
 
         document.getElementById("soundToggleBtn").addEventListener("click", function (e) {
           soundEnabled = !soundEnabled;
@@ -2174,7 +1312,3 @@
   </script>
 </body>
 </html>
-<div style="margin-top: 12px; padding: 10px; background: rgba(0,0,0,0.15); border-radius: 8px; text-align: center;">
-  <p style="margin: 0 0 6px 0; font-size: 0.82rem; font-weight: 700; color: var(--poster-cream);">Enjoying the game? Tip the Gamekeeper! 🎸</p>
-  <a href="https://venmo.com/code?user_id=3304642737864704120&created=1794878534" target="_blank" style="display: inline-block; background: #008CFF; color: white; padding: 6px 14px; border-radius: 6px; font-weight: bold; font-size: 0.78px; text-decoration: none; border: 2px solid #2b1810;">Tip via Venmo / PayPal</a>
-</div>
